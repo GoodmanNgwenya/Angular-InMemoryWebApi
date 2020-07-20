@@ -1,0 +1,44 @@
+<div class="card" style="width:500px; margin:50px auto; padding: 5pc;" >
+    <div class="card-header">
+      Log In
+    </div>
+    <div class="card-body">
+      <form class="login-container"  (ngSubmit)="login(loginForm)" #loginForm="ngForm">
+    
+        <p >
+          <input class="form-control" type="email" placeholder="Email"
+          id="email"
+          name="email"
+          ngModel
+          #emailVar="ngModel"
+          required 
+          [ngClass]="{ 'has-error': isSubmitted && emailVar.errors }"/>
+        </p>
+    
+        <div *ngIf="isSubmitted && emailVar.errors" class="help-block">
+          <div *ngIf="emailVar.errors.required">Email is required</div>
+        </div>
+    
+        <p >
+          <input class="form-control" type="password" placeholder="Password" 
+            id="password"
+            name="password"
+            minlength="6"
+            ngModel
+            #passwordVar="ngModel"
+            required
+            [ngClass]="{ 'has-error': isSubmitted && passwordVar.errors }">
+        </p>
+    
+        <div *ngIf="isSubmitted && passwordVar.errors" class="help-block">
+          <div *ngIf="passwordVar.errors.required">Password is required</div>
+        </div>
+    
+        <p>
+          <input class="btn btn-primary mr-3" [disabled]='!loginForm.valid' type="submit" value="Log in">
+      
+          <a routerLink="/register" class="btn btn-link">Register</a>
+        </p>
+      </form>
+  </div>
+</div>
